@@ -1,0 +1,14 @@
+PID		KEYWORD1
+setSetPoint	KEYWORD2
+setKP		KEYWORD2
+setKI		KEYWORD2
+setKD		KEYWORD2
+setGains	KEYWORD2
+setLimits	KEYWORD2
+setFrequency	KEYWORD2
+addInput	KEYWORD2
+compute		KEYWORD2
+reset		KEYWORD2
+getKI		KEYWORD2
+getKD		KEYWORD2
+getSetPoint	KEYWORD2
