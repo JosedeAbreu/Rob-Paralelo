@@ -46,13 +46,14 @@
 #define KD_C 0
 
 // Instânciando objetos
-ENCODER carroA_ENCODER(encoder_BASE_A1, encoder_BASE_A2);
-ENCODER carroB_ENCODER(encoder_BASE_B1, encoder_BASE_B2);
-ENCODER carroC_ENCODER(encoder_BASE_C1, encoder_BASE_C2);
+ACIONAMENTO ACIONAMENTO[0](SENTIDO_Aout, PWM_Aout);
+ACIONAMENTO ACIONAMENTO[1](SENTIDO_Bout, PWM_Bout);
+ACIONAMENTO ACIONAMENTO[2](SENTIDO_Cout, PWM_Cout);
 
-ACIONAMENTO carroA_ACIONAMENTO(SENTIDO_Aout, PWM_Aout);
-ACIONAMENTO carroB_ACIONAMENTO(SENTIDO_Bout, PWM_Bout);
-ACIONAMENTO carroC_ACIONAMENTO(SENTIDO_Cout, PWM_Cout);
+ACIONAMENTO ACIONAMENTO[3]{
+  (SENTIDO_Aout, PWM_Aout),
+  (SENTIDO_Bout, PWM_Bout),
+  (SENTIDO_Cout, PWM_Cout)};
 
 // Parametros para controle
 PID PIDS[3] =                                            
@@ -60,7 +61,7 @@ PID PIDS[3] =
   (KP_B, KI_B, KD_B, -255, 255),                                  // CARRO B = PIDS[1]
   (KP_C, KI_C, KD_C, -255, 255)};                                 // CARRO C = PIDS[2]
 
-unsigned long lastComputeTime[3] = {millis(),millis(),millis()};
+unsigned long lastComputeTime[3];
 unsigned long tempo[3];
 float dt[3];
 
@@ -71,8 +72,10 @@ void UP_PID(int carro){
       dt[carro] = (tempo[carro])/1000.0f;   
       
       float out = PIDS[carro].compute(dt[carro]);
-    
-      carroC_ACIONAMENTO.OUT(out);
+
+      lastComputeTime[carro] = millis();
+
+      ACIONAMENTO[carro].OUT(out);
 }
 
 
@@ -94,7 +97,6 @@ void contagem_A() {
       }
       
       carroA_ENCODER.pose = (carroA_ENCODER.pulsos * 0.0125);
-      lastComputeTime[0] = millis();
       PIDS[0].addInput(carroA_ENCODER.pose);
 }
 void contagem_B() { 
@@ -113,7 +115,6 @@ void contagem_B() {
       }
       
       carroB_ENCODER.pose = (carroB_ENCODER.pulsos * 0.0125);
-      lastComputeTime[1] = millis();
       PIDS[1].addInput(carroB_ENCODER.pose);
 }
 void contagem_C() { 
@@ -132,21 +133,20 @@ void contagem_C() {
       }
       
       carroC_ENCODER.pose = (carroC_ENCODER.pulsos * 0.0125);
-      lastComputeTime[2] = millis();
       PIDS[2].addInput(carroC_ENCODER.pose);
 }
 
 // Funções de parada
 void STOP_A(){
-      carroA_ACIONAMENTO.STOP();
+      ACIONAMENTO[0].STOP();
       PIDS[0].setSetPoint(carroA_ENCODER.pose);
 }
 void STOP_B(){
-      carroB_ACIONAMENTO.STOP();
+      ACIONAMENTO[1].STOP();
       PIDS[1].setSetPoint(carroB_ENCODER.pose);
 }
 void STOP_C(){
-      carroC_ACIONAMENTO.STOP();
+      ACIONAMENTO[2].STOP();
       PIDS[2].setSetPoint(carroC_ENCODER.pose);
 }
 
@@ -166,7 +166,10 @@ void setup() {
   
   attachInterrupt(digitalPinToInterrupt(fimcurso_C1),  STOP_C, HIGH);
   attachInterrupt(digitalPinToInterrupt(fimcurso_C2),  STOP_C, HIGH);
-  
+
+  lastComputeTime[0] = millis();
+  lastComputeTime[1] = millis();
+  lastComputeTime[2] = millis();
 }
 
 void loop() {  
