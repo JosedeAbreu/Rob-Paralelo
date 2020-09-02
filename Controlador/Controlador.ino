@@ -47,9 +47,9 @@
 
 // Instânciando objetos
 ACIONAMENTO ACIONAMENTO[3]{
-  (SENTIDO_Aout, PWM_Aout),
-  (SENTIDO_Bout, PWM_Bout),
-  (SENTIDO_Cout, PWM_Cout)};
+  (SENTIDO_Aout, PWM_Aout),                                      // CARRO A = ACIONAMENTO[0]
+  (SENTIDO_Bout, PWM_Bout),                                      // CARRO B = ACIONAMENTO[1]
+  (SENTIDO_Cout, PWM_Cout)};                                     // CARRO C = ACIONAMENTO[2]
 
 // Parametros para controle
 PID PIDS[3] =                                            
