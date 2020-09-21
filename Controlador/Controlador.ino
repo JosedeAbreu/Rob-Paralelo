@@ -46,16 +46,18 @@
 #define KD_C 0
 
 // Instânciando objetos
-ACIONAMENTO ACIONAMENTO[3]{
-  (SENTIDO_Aout, PWM_Aout),                                      // CARRO A = ACIONAMENTO[0]
-  (SENTIDO_Bout, PWM_Bout),                                      // CARRO B = ACIONAMENTO[1]
-  (SENTIDO_Cout, PWM_Cout)};                                     // CARRO C = ACIONAMENTO[2]
+ACIONAMENTO ACIONAMENTO_A(SENTIDO_Aout, PWM_Aout);
+ACIONAMENTO ACIONAMENTO_B(SENTIDO_Bout, PWM_Bout);
+ACIONAMENTO ACIONAMENTO_C(SENTIDO_Cout, PWM_Cout);
+
+ENCODER carroA_ENCODER(encoder_BASE_A1,encoder_BASE_A2);
+ENCODER carroB_ENCODER(encoder_BASE_B1,encoder_BASE_B2);
+ENCODER carroC_ENCODER(encoder_BASE_C1,encoder_BASE_C2);
 
 // Parametros para controle
-PID PIDS[3] =                                            
-{ (KP_A, KI_A, KD_A, -255, 255),                                  // CARRO A = PIDS[0]
-  (KP_B, KI_B, KD_B, -255, 255),                                  // CARRO B = PIDS[1]
-  (KP_C, KI_C, KD_C, -255, 255)};                                 // CARRO C = PIDS[2]
+PID PIDA(KP_A, KI_A, KD_A, -255, 255);                           
+PID PIDB(KP_B, KI_B, KD_B, -255, 255);                                  
+PID PIDC(KP_C, KI_C, KD_C, -255, 255);                                 
 
 unsigned long lastComputeTime[3];
 unsigned long tempo[3];
@@ -63,18 +65,36 @@ float dt[3];
 
 
 //  Acionamento PID
-void UP_PID(int carro){
-      tempo[carro] = (millis() - lastComputeTime[carro]);     
-      dt[carro] = (tempo[carro])/1000.0f;   
+void UP_PIDA(){
+      tempo[0] = (millis() - lastComputeTime[0]);     
+      dt[0] = (tempo[0])/1000.0f;   
       
-      float out = PIDS[carro].compute(dt[carro]);
+      float out = PIDA.compute(dt[0]);
 
-      lastComputeTime[carro] = millis();
+      lastComputeTime[0] = millis();
 
-      ACIONAMENTO[carro].OUT(out);
+      ACIONAMENTO_A.OUT(out);
 }
+void UP_PIDB(){
+      tempo[1] = (millis() - lastComputeTime[1]);     
+      dt[1] = (tempo[1])/1000.0f;   
+      
+      float out = PIDB.compute(dt[1]);
 
+      lastComputeTime[1] = millis();
 
+      ACIONAMENTO_B.OUT(out);
+}
+void UP_PIDC(){
+      tempo[2] = (millis() - lastComputeTime[2]);     
+      dt[2] = (tempo[2])/1000.0f;   
+      
+      float out = PIDC.compute(dt[2]);
+
+      lastComputeTime[2] = millis();
+
+      ACIONAMENTO_A.OUT(out);
+}
 
 // Função contadora de pulsos
 void contagem_A() { 
@@ -93,7 +113,7 @@ void contagem_A() {
       }
       
       carroA_ENCODER.pose = (carroA_ENCODER.pulsos * 0.0125);
-      PIDS[0].addInput(carroA_ENCODER.pose);
+      PIDA.addInput(carroA_ENCODER.pose);
 }
 void contagem_B() { 
       bool newSample_port2;
@@ -111,7 +131,7 @@ void contagem_B() {
       }
       
       carroB_ENCODER.pose = (carroB_ENCODER.pulsos * 0.0125);
-      PIDS[1].addInput(carroB_ENCODER.pose);
+      PIDB.addInput(carroB_ENCODER.pose);
 }
 void contagem_C() { 
       bool newSample_port2;
@@ -129,21 +149,21 @@ void contagem_C() {
       }
       
       carroC_ENCODER.pose = (carroC_ENCODER.pulsos * 0.0125);
-      PIDS[2].addInput(carroC_ENCODER.pose);
+      PIDC.addInput(carroC_ENCODER.pose);
 }
 
 // Funções de parada
 void STOP_A(){
-      ACIONAMENTO[0].STOP();
-      PIDS[0].setSetPoint(carroA_ENCODER.pose);
+      ACIONAMENTO_A.STOP();
+      PIDA.setSetPoint(carroA_ENCODER.pose);
 }
 void STOP_B(){
-      ACIONAMENTO[1].STOP();
-      PIDS[1].setSetPoint(carroB_ENCODER.pose);
+      ACIONAMENTO_B.STOP();
+      PIDB.setSetPoint(carroB_ENCODER.pose);
 }
 void STOP_C(){
-      ACIONAMENTO[2].STOP();
-      PIDS[2].setSetPoint(carroC_ENCODER.pose);
+      ACIONAMENTO_C.STOP();
+      PIDC.setSetPoint(carroC_ENCODER.pose);
 }
 
 void setup() {
@@ -176,21 +196,24 @@ void loop() {
     
     if(msg.startsWith("SA")){
       msg.replace("SA","");
-      PIDS[0].setSetPoint(msg.toInt());
+      PIDA.setSetPoint(msg.toInt());
     }
     else if(msg.startsWith("SB")){
       msg.replace("SB","");
-      PIDS[1].setSetPoint(msg.toInt());
+      PIDB.setSetPoint(msg.toInt());
     }
     else if(msg.startsWith("SC")){
       msg.replace("SC","");
-      PIDS[2].setSetPoint(msg.toInt());
+      PIDC.setSetPoint(msg.toInt());
     }
     
   }
-  
-  UP_PID(0);
-  UP_PID(1);
-  UP_PID(2); 
+
+  Serial.print(carroC_ENCODER.pose);
+  Serial.print(" ");
+  Serial.println(carroC_ENCODER.pulsos);
+  UP_PIDA();
+  UP_PIDB();
+  UP_PIDC(); 
 }
 
