@@ -54,47 +54,16 @@ ENCODER carroA_ENCODER(encoder_BASE_A1,encoder_BASE_A2);
 ENCODER carroB_ENCODER(encoder_BASE_B1,encoder_BASE_B2);
 ENCODER carroC_ENCODER(encoder_BASE_C1,encoder_BASE_C2);
 
+ENCODER FIM_A(fimcurso_A1,fimcurso_A2);
+ENCODER FIM_B(fimcurso_B1,fimcurso_B2);
+ENCODER FIM_C(fimcurso_C1,fimcurso_C2);
+
 // Parametros para controle
 PID PIDA(KP_A, KI_A, KD_A, -255, 255);                           
 PID PIDB(KP_B, KI_B, KD_B, -255, 255);                                  
 PID PIDC(KP_C, KI_C, KD_C, -255, 255);                                 
 
-unsigned long lastComputeTime[3];
-unsigned long tempo[3];
-float dt[3];
-
-
-//  Acionamento PID
-void UP_PIDA(){
-      tempo[0] = (millis() - lastComputeTime[0]);     
-      dt[0] = (tempo[0])/1000.0f;   
-      
-      float out = PIDA.compute(dt[0]);
-
-      lastComputeTime[0] = millis();
-
-      ACIONAMENTO_A.OUT(out);
-}
-void UP_PIDB(){
-      tempo[1] = (millis() - lastComputeTime[1]);     
-      dt[1] = (tempo[1])/1000.0f;   
-      
-      float out = PIDB.compute(dt[1]);
-
-      lastComputeTime[1] = millis();
-
-      ACIONAMENTO_B.OUT(out);
-}
-void UP_PIDC(){
-      tempo[2] = (millis() - lastComputeTime[2]);     
-      dt[2] = (tempo[2])/1000.0f;   
-      
-      float out = PIDC.compute(dt[2]);
-
-      lastComputeTime[2] = millis();
-
-      ACIONAMENTO_A.OUT(out);
-}
+unsigned long lastComputeTime[3] = {0,0,0};
 
 // Função contadora de pulsos
 void contagem_A() { 
@@ -152,6 +121,56 @@ void contagem_C() {
       PIDC.addInput(carroC_ENCODER.pose);
 }
 
+//  Acionamento PID
+void UP_PIDA(){
+      float tempo = (millis() - lastComputeTime[0]);     
+      float dt = (tempo)/1000.0f;   
+      
+      float out = PIDA.compute(dt);
+
+      lastComputeTime[0] = millis();
+
+      if(isnan(out)){
+        ACIONAMENTO_A.OUT(out);
+        WRITE_OUTPUT('A',out);
+      }else{
+        ACIONAMENTO_A.OUT(0);
+        WRITE_OUTPUT('A',0);
+      }
+}
+void UP_PIDB(){
+      float tempo = (millis() - lastComputeTime[1]);     
+      float dt = (tempo)/1000.0f;   
+      
+      float out = PIDB.compute(dt);
+
+      lastComputeTime[1] = millis();
+
+      if(isnan(out)){
+        ACIONAMENTO_B.OUT(out);
+        WRITE_OUTPUT('B',out);
+      }else{
+        ACIONAMENTO_B.OUT(0);
+        WRITE_OUTPUT('B',0);
+      }
+}
+void UP_PIDC(){
+      float tempo = (millis() - lastComputeTime[2]);     
+      float dt = (tempo)/1000.0f;   
+      
+      float out = PIDC.compute(dt);
+      
+      lastComputeTime[2] = millis();
+      
+      if(isnan(out)){
+        ACIONAMENTO_C.OUT(out);
+        WRITE_OUTPUT('C',out);
+      }else{
+        ACIONAMENTO_C.OUT(0);
+        WRITE_OUTPUT('C',0);
+      }
+}
+
 // Funções de parada
 void STOP_A(){
       ACIONAMENTO_A.STOP();
@@ -166,6 +185,94 @@ void STOP_C(){
       PIDC.setSetPoint(carroC_ENCODER.pose);
 }
 
+void READ_SERIAL(){
+    if(Serial.available() > 0){
+      String msg = Serial.readString();
+      msg.replace("\n",""); 
+      
+      if(msg.startsWith("S")){
+            if(msg.startsWith("SA")){
+              msg.replace("SA","");
+              PIDA.setSetPoint(msg.toInt());
+            }
+            else if(msg.startsWith("SB")){
+              msg.replace("SB","");
+              PIDB.setSetPoint(msg.toInt());
+            }
+            else if(msg.startsWith("SC")){
+              msg.replace("SC","");
+              PIDC.setSetPoint(msg.toInt());
+            }
+     }
+     else if(msg.startsWith("P")){
+            if(msg.startsWith("PA")){
+              msg.replace("PA","");
+              PIDA.setKP(msg.toInt());
+            }
+            else if(msg.startsWith("PB")){
+              msg.replace("PB","");
+              PIDB.setKP(msg.toInt());
+            }
+            else if(msg.startsWith("PC")){
+              msg.replace("PC","");
+              PIDC.setKP(msg.toInt());
+            }
+     }
+     else if(msg.startsWith("I")){
+            if(msg.startsWith("IA")){
+              msg.replace("IA","");
+              PIDA.setKI(msg.toInt());
+            }
+            else if(msg.startsWith("IB")){
+              msg.replace("IB","");
+              PIDB.setKI(msg.toInt());
+            }
+            else if(msg.startsWith("IC")){
+              msg.replace("IC","");
+              PIDC.setKI(msg.toInt());
+            }
+     }
+     else if(msg.startsWith("D")){
+            if(msg.startsWith("DA")){
+              msg.replace("DA","");
+              PIDA.setKD(msg.toInt());
+            }
+            else if(msg.startsWith("DB")){
+              msg.replace("DB","");
+              PIDB.setKD(msg.toInt());
+            }
+            else if(msg.startsWith("DC")){
+              msg.replace("DC","");
+              PIDC.setKD(msg.toInt());
+            }
+     }
+   }
+}
+
+void WRITE_INPUT(){
+  Serial.print("I");
+  Serial.print("A");
+  Serial.print((int)carroA_ENCODER.pose);
+  Serial.print("\n");
+
+  Serial.print("I");
+  Serial.print("B");
+  Serial.print((int)carroB_ENCODER.pose);
+  Serial.print("\n");
+
+  Serial.print("I");
+  Serial.print("C");
+  Serial.print((int)carroC_ENCODER.pose);
+  Serial.print("\n");
+}
+
+void WRITE_OUTPUT(char carro, float out){
+  Serial.print("O");
+  Serial.print(carro);
+  Serial.print((int)out);
+  Serial.print("\n");
+}
+
 void setup() {
   Serial.begin(9600);
   Serial.setTimeout(100);
@@ -174,44 +281,34 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(carroB_ENCODER.getPort1()),  contagem_B, RISING);
   attachInterrupt(digitalPinToInterrupt(carroC_ENCODER.getPort1()),  contagem_C, RISING);  
 
-  attachInterrupt(digitalPinToInterrupt(fimcurso_A1),  STOP_A, HIGH);
-  attachInterrupt(digitalPinToInterrupt(fimcurso_A2),  STOP_A, HIGH);
+  /*attachInterrupt(digitalPinToInterrupt(FIM_A.getPort1()),  STOP_A, HIGH);
+  attachInterrupt(digitalPinToInterrupt(FIM_A.getPort2()),  STOP_A, HIGH);
 
-  attachInterrupt(digitalPinToInterrupt(fimcurso_B1),  STOP_B, HIGH);
-  attachInterrupt(digitalPinToInterrupt(fimcurso_B2),  STOP_B, HIGH);
+  attachInterrupt(digitalPinToInterrupt(FIM_B.getPort1()),  STOP_B, HIGH);
+  attachInterrupt(digitalPinToInterrupt(FIM_B.getPort2()),  STOP_B, HIGH);
   
-  attachInterrupt(digitalPinToInterrupt(fimcurso_C1),  STOP_C, HIGH);
-  attachInterrupt(digitalPinToInterrupt(fimcurso_C2),  STOP_C, HIGH);
+  attachInterrupt(digitalPinToInterrupt(FIM_C.getPort1()),  STOP_C, HIGH);
+  attachInterrupt(digitalPinToInterrupt(FIM_C.getPort2()),  STOP_C, HIGH);*/
+
+  PIDA.reset();
+  PIDB.reset();
+  PIDC.reset();
+
+  PIDA.addInput(0);
+  PIDB.addInput(0);
+  PIDC.addInput(0);
 
   lastComputeTime[0] = millis();
   lastComputeTime[1] = millis();
   lastComputeTime[2] = millis();
 }
 
-void loop() {  
-  if(Serial.available() > 0){
-    // PADRÃO: (SETPOINT) 'S'+(CARRO)+VALOR+'\n'
-    String msg = Serial.readString();
-    msg.replace("\n",""); 
-    
-    if(msg.startsWith("SA")){
-      msg.replace("SA","");
-      PIDA.setSetPoint(msg.toInt());
-    }
-    else if(msg.startsWith("SB")){
-      msg.replace("SB","");
-      PIDB.setSetPoint(msg.toInt());
-    }
-    else if(msg.startsWith("SC")){
-      msg.replace("SC","");
-      PIDC.setSetPoint(msg.toInt());
-    }
-    
-  }
-
-  Serial.print(carroC_ENCODER.pose);
-  Serial.print(" ");
-  Serial.println(carroC_ENCODER.pulsos);
+void loop(){  
+  READ_SERIAL();
+  WRITE_INPUT();
+  PIDA.addInput(carroA_ENCODER.pose++);
+  PIDB.addInput(carroB_ENCODER.pose++);
+  PIDC.addInput(carroC_ENCODER.pose++);
   UP_PIDA();
   UP_PIDB();
   UP_PIDC(); 
