@@ -123,52 +123,37 @@ void contagem_C() {
 
 //  Acionamento PID
 void UP_PIDA(){
-      float tempo = (millis() - lastComputeTime[0]);     
+      float tempo = (micros() - lastComputeTime[0]);     
       float dt = (tempo)/1000.0f;   
       
       float out = PIDA.compute(dt);
-
-      lastComputeTime[0] = millis();
-
-      if(isnan(out)){
-        ACIONAMENTO_A.OUT(out);
-        WRITE_OUTPUT('A',out);
-      }else{
-        ACIONAMENTO_A.OUT(0);
-        WRITE_OUTPUT('A',0);
-      }
+      
+      lastComputeTime[0] = micros();
+      
+      ACIONAMENTO_A.OUT(out);
+      WRITE_OUTPUT('A',out);
 }
 void UP_PIDB(){
-      float tempo = (millis() - lastComputeTime[1]);     
+      float tempo = (micros() - lastComputeTime[1]);     
       float dt = (tempo)/1000.0f;   
       
       float out = PIDB.compute(dt);
 
-      lastComputeTime[1] = millis();
+      lastComputeTime[1] = micros();
 
-      if(isnan(out)){
-        ACIONAMENTO_B.OUT(out);
-        WRITE_OUTPUT('B',out);
-      }else{
-        ACIONAMENTO_B.OUT(0);
-        WRITE_OUTPUT('B',0);
-      }
+      ACIONAMENTO_B.OUT(out);
+      WRITE_OUTPUT('B',out);
 }
 void UP_PIDC(){
-      float tempo = (millis() - lastComputeTime[2]);     
+      float tempo = (micros() - lastComputeTime[2]);     
       float dt = (tempo)/1000.0f;   
       
       float out = PIDC.compute(dt);
       
-      lastComputeTime[2] = millis();
-      
-      if(isnan(out)){
-        ACIONAMENTO_C.OUT(out);
-        WRITE_OUTPUT('C',out);
-      }else{
-        ACIONAMENTO_C.OUT(0);
-        WRITE_OUTPUT('C',0);
-      }
+      lastComputeTime[2] = micros();
+       
+      ACIONAMENTO_C.OUT(out);
+      WRITE_OUTPUT('C',out);
 }
 
 // Funções de parada
@@ -298,6 +283,10 @@ void setup() {
   PIDB.addInput(0);
   PIDC.addInput(0);
 
+  PIDA.setSetPoint(0);
+  PIDB.setSetPoint(0);
+  PIDC.setSetPoint(0);
+
   lastComputeTime[0] = millis();
   lastComputeTime[1] = millis();
   lastComputeTime[2] = millis();
@@ -306,9 +295,7 @@ void setup() {
 void loop(){  
   READ_SERIAL();
   WRITE_INPUT();
-  PIDA.addInput(carroA_ENCODER.pose++);
-  PIDB.addInput(carroB_ENCODER.pose++);
-  PIDC.addInput(carroC_ENCODER.pose++);
+  
   UP_PIDA();
   UP_PIDB();
   UP_PIDC(); 
