@@ -8,11 +8,11 @@
 #define encoder_BASE_A1 10
 #define encoder_BASE_A2 11
 
-#define encoder_BASE_B1 17
-#define encoder_BASE_B2 16
+#define encoder_BASE_B1 16
+#define encoder_BASE_B2 17
 
-#define encoder_BASE_C1 27
-#define encoder_BASE_C2 29
+#define encoder_BASE_C1 29
+#define encoder_BASE_C2 27
 
 #define fimcurso_A1     12
 #define fimcurso_A2     13
@@ -54,16 +54,15 @@ ENCODER carroA_ENCODER(encoder_BASE_A1,encoder_BASE_A2);
 ENCODER carroB_ENCODER(encoder_BASE_B1,encoder_BASE_B2);
 ENCODER carroC_ENCODER(encoder_BASE_C1,encoder_BASE_C2);
 
-ENCODER FIM_A(fimcurso_A1,fimcurso_A2);
-ENCODER FIM_B(fimcurso_B1,fimcurso_B2);
-ENCODER FIM_C(fimcurso_C1,fimcurso_C2);
-
 // Parametros para controle
-PID PIDA(KP_A, KI_A, KD_A, -255, 255);                           
-PID PIDB(KP_B, KI_B, KD_B, -255, 255);                                  
-PID PIDC(KP_C, KI_C, KD_C, -255, 255);                                 
+PID PIDA(KP_A, KI_A, KD_A, -250, 250);                           
+PID PIDB(KP_B, KI_B, KD_B, -250, 250);                                  
+PID PIDC(KP_C, KI_C, KD_C, -250, 250);                                 
 
 unsigned long lastComputeTime[3] = {0,0,0};
+
+int TIME_INICIAL=0;
+int TIME_EXECUTE=0;
 
 // Função contadora de pulsos
 void contagem_A() { 
@@ -82,7 +81,7 @@ void contagem_A() {
       }
       
       carroA_ENCODER.pose = (carroA_ENCODER.pulsos * 0.0125);
-      PIDA.addInput(carroA_ENCODER.pose);
+      PIDA.addInput((int)carroA_ENCODER.pose);
 }
 void contagem_B() { 
       bool newSample_port2;
@@ -100,7 +99,7 @@ void contagem_B() {
       }
       
       carroB_ENCODER.pose = (carroB_ENCODER.pulsos * 0.0125);
-      PIDB.addInput(carroB_ENCODER.pose);
+      PIDB.addInput((int)carroB_ENCODER.pose);
 }
 void contagem_C() { 
       bool newSample_port2;
@@ -118,7 +117,7 @@ void contagem_C() {
       }
       
       carroC_ENCODER.pose = (carroC_ENCODER.pulsos * 0.0125);
-      PIDC.addInput(carroC_ENCODER.pose);
+      PIDC.addInput((int)carroC_ENCODER.pose);
 }
 
 //  Acionamento PID
@@ -159,15 +158,12 @@ void UP_PIDC(){
 // Funções de parada
 void STOP_A(){
       ACIONAMENTO_A.STOP();
-      PIDA.setSetPoint(carroA_ENCODER.pose);
 }
 void STOP_B(){
       ACIONAMENTO_B.STOP();
-      PIDB.setSetPoint(carroB_ENCODER.pose);
 }
 void STOP_C(){
       ACIONAMENTO_C.STOP();
-      PIDC.setSetPoint(carroC_ENCODER.pose);
 }
 
 void READ_SERIAL(){
@@ -178,57 +174,81 @@ void READ_SERIAL(){
       if(msg.startsWith("S")){
             if(msg.startsWith("SA")){
               msg.replace("SA","");
-              PIDA.setSetPoint(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDA.setSetPoint(value);
             }
             else if(msg.startsWith("SB")){
               msg.replace("SB","");
-              PIDB.setSetPoint(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDB.setSetPoint(value);
             }
             else if(msg.startsWith("SC")){
               msg.replace("SC","");
-              PIDC.setSetPoint(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDC.setSetPoint(value);
             }
      }
      else if(msg.startsWith("P")){
             if(msg.startsWith("PA")){
               msg.replace("PA","");
-              PIDA.setKP(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDA.setKP(value);
             }
             else if(msg.startsWith("PB")){
               msg.replace("PB","");
-              PIDB.setKP(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDB.setKP(value);
             }
             else if(msg.startsWith("PC")){
               msg.replace("PC","");
-              PIDC.setKP(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDC.setKP(value);
             }
      }
      else if(msg.startsWith("I")){
             if(msg.startsWith("IA")){
               msg.replace("IA","");
-              PIDA.setKI(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDA.setKI(value);
             }
             else if(msg.startsWith("IB")){
               msg.replace("IB","");
-              PIDB.setKI(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDB.setKI(value);
             }
             else if(msg.startsWith("IC")){
               msg.replace("IC","");
-              PIDC.setKI(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDC.setKI(value);
             }
      }
      else if(msg.startsWith("D")){
             if(msg.startsWith("DA")){
               msg.replace("DA","");
-              PIDA.setKD(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDA.setKD(value);
             }
             else if(msg.startsWith("DB")){
               msg.replace("DB","");
-              PIDB.setKD(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDB.setKD(value);
             }
             else if(msg.startsWith("DC")){
               msg.replace("DC","");
-              PIDC.setKD(msg.toInt());
+              float value = msg.toInt();
+              value = value/100;
+              PIDC.setKD(value);
             }
      }
    }
@@ -237,24 +257,33 @@ void READ_SERIAL(){
 void WRITE_INPUT(){
   Serial.print("I");
   Serial.print("A");
-  Serial.print((int)carroA_ENCODER.pose);
+  int multiplication = carroA_ENCODER.pose * 100;
+  Serial.print(multiplication);
   Serial.print("\n");
 
   Serial.print("I");
   Serial.print("B");
-  Serial.print((int)carroB_ENCODER.pose);
+  multiplication = carroB_ENCODER.pose * 100;
+  Serial.print(multiplication);
   Serial.print("\n");
 
   Serial.print("I");
   Serial.print("C");
-  Serial.print((int)carroC_ENCODER.pose);
+  multiplication = carroC_ENCODER.pose * 100;
+  Serial.print(multiplication);
+  Serial.print("\n");
+}
+
+void WRITE_TIME(int miliseg){
+  Serial.print("T");
+  Serial.print((int)miliseg);
   Serial.print("\n");
 }
 
 void WRITE_OUTPUT(char carro, float out){
   Serial.print("O");
   Serial.print(carro);
-  Serial.print((int)out);
+  Serial.print(out);
   Serial.print("\n");
 }
 
@@ -266,7 +295,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(carroB_ENCODER.getPort1()),  contagem_B, RISING);
   attachInterrupt(digitalPinToInterrupt(carroC_ENCODER.getPort1()),  contagem_C, RISING);  
 
-  /*attachInterrupt(digitalPinToInterrupt(FIM_A.getPort1()),  STOP_A, HIGH);
+  /*attachInterrupt(digitalPinToInterrupt(fimcurso_A1),  STOP_A, HIGH);
   attachInterrupt(digitalPinToInterrupt(FIM_A.getPort2()),  STOP_A, HIGH);
 
   attachInterrupt(digitalPinToInterrupt(FIM_B.getPort1()),  STOP_B, HIGH);
@@ -274,6 +303,10 @@ void setup() {
   
   attachInterrupt(digitalPinToInterrupt(FIM_C.getPort1()),  STOP_C, HIGH);
   attachInterrupt(digitalPinToInterrupt(FIM_C.getPort2()),  STOP_C, HIGH);*/
+
+  carroA_ENCODER.pose = 0;
+  carroB_ENCODER.pose = 0;
+  carroC_ENCODER.pose = 0;
 
   PIDA.reset();
   PIDB.reset();
@@ -290,14 +323,22 @@ void setup() {
   lastComputeTime[0] = millis();
   lastComputeTime[1] = millis();
   lastComputeTime[2] = millis();
+
+  TIME_INICIAL = millis();
 }
 
 void loop(){  
   READ_SERIAL();
   WRITE_INPUT();
   
+  int NEW_TIME = (millis() - TIME_INICIAL);
+  if((NEW_TIME-TIME_EXECUTE)>10){
+    TIME_EXECUTE = NEW_TIME;
+    WRITE_TIME(TIME_EXECUTE);
+  }
+  
   UP_PIDA();
   UP_PIDB();
-  UP_PIDC(); 
+  UP_PIDC();
 }
 
