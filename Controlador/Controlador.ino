@@ -123,7 +123,7 @@ void contagem_C() {
 //  Acionamento PID
 void UP_PIDA(){
       float tempo = (micros() - lastComputeTime[0]);     
-      float dt = (tempo)/1000.0f;   
+      float dt = (tempo)/1000000.0f;   
       
       float out = PIDA.compute(dt);
       
@@ -134,7 +134,7 @@ void UP_PIDA(){
 }
 void UP_PIDB(){
       float tempo = (micros() - lastComputeTime[1]);     
-      float dt = (tempo)/1000.0f;   
+      float dt = (tempo)/1000000.0f;   
       
       float out = PIDB.compute(dt);
 
@@ -145,7 +145,7 @@ void UP_PIDB(){
 }
 void UP_PIDC(){
       float tempo = (micros() - lastComputeTime[2]);     
-      float dt = (tempo)/1000.0f;   
+      float dt = (tempo)/1000000.0f;   
       
       float out = PIDC.compute(dt);
       
