@@ -2,4 +2,4 @@
 <p align='center'>Projeto de um Sistema Surpervisório e Controlador para um Robô Paralelo</p>
 
 //lista de conteúdos
-<a href='./controlador'>controlador</a>
+<a href='./Controlador'>controlador</a>
