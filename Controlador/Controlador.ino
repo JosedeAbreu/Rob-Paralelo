@@ -14,14 +14,14 @@
 #define encoder_BASE_C1 29
 #define encoder_BASE_C2 27
 
-#define fimcurso_A1     12
-#define fimcurso_A2     13
+#define fimcurso_A1     13
+#define fimcurso_A2     12
 
-#define fimcurso_B1     15
-#define fimcurso_B2     14
+#define fimcurso_B1     14
+#define fimcurso_B2     15
 
-#define fimcurso_C1     31
-#define fimcurso_C2     33
+#define fimcurso_C1     33
+#define fimcurso_C2     31
 
 // Portas Acionamento - CARRO C
 #define SENTIDO_Aout 8
@@ -33,17 +33,17 @@
 #define PWM_Cout 25
 
 // GANHOS 
-#define KP_A 0
+#define KP_A 40
 #define KI_A 0
 #define KD_A 0
 
-#define KP_B 0
+#define KP_B 40
 #define KI_B 0
 #define KD_B 0
 
-#define KP_C 0
+#define KP_C 32
 #define KI_C 0
-#define KD_C 0
+#define KD_C 0.016
 
 // Instânciando objetos
 ACIONAMENTO ACIONAMENTO_A(SENTIDO_Aout, PWM_Aout);
@@ -53,6 +53,10 @@ ACIONAMENTO ACIONAMENTO_C(SENTIDO_Cout, PWM_Cout);
 ENCODER carroA_ENCODER(encoder_BASE_A1,encoder_BASE_A2);
 ENCODER carroB_ENCODER(encoder_BASE_B1,encoder_BASE_B2);
 ENCODER carroC_ENCODER(encoder_BASE_C1,encoder_BASE_C2);
+
+ENCODER FIM_A(fimcurso_A1,fimcurso_A1);
+ENCODER FIM_B(fimcurso_B1,fimcurso_B1);
+ENCODER FIM_C(fimcurso_C1,fimcurso_C1);
 
 // Parametros para controle
 PID PIDA(KP_A, KI_A, KD_A, -250, 250);                           
@@ -158,12 +162,15 @@ void UP_PIDC(){
 // Funções de parada
 void STOP_A(){
       ACIONAMENTO_A.STOP();
+      PIDA.setSetPoint(carroA_ENCODER.pose);
 }
 void STOP_B(){
       ACIONAMENTO_B.STOP();
+      PIDB.setSetPoint(carroB_ENCODER.pose);
 }
 void STOP_C(){
       ACIONAMENTO_C.STOP();
+      PIDC.setSetPoint(carroC_ENCODER.pose);
 }
 
 void READ_SERIAL(){
@@ -191,7 +198,7 @@ void READ_SERIAL(){
               PIDC.setSetPoint(value);
             }
      }
-     else if(msg.startsWith("P")){
+     /*else if(msg.startsWith("P")){
             if(msg.startsWith("PA")){
               msg.replace("PA","");
               float value = msg.toInt();
@@ -250,7 +257,7 @@ void READ_SERIAL(){
               value = value/100;
               PIDC.setKD(value);
             }
-     }
+     }*/
    }
 }
 
@@ -287,6 +294,45 @@ void WRITE_OUTPUT(char carro, float out){
   Serial.print("\n");
 }
 
+void GO_ZERO(){
+  int untilZero_A=0;
+  int untilZero_B=0;
+  int untilZero_C=0;
+  while(!(FIM_A.registerRead())){
+    PIDA.setSetPoint(untilZero_A);
+    UP_PIDA();
+    untilZero_A--;
+  }
+  if(FIM_A.registerRead()){
+     ACIONAMENTO_A.STOP();
+     carroA_ENCODER.pulsos = 0;
+     carroA_ENCODER.pose = 0;
+     PIDA.addInput(0);
+  }
+  while(!(FIM_B.registerRead())){
+    PIDB.setSetPoint(untilZero_B);
+    UP_PIDB();
+    untilZero_B--;
+  }
+  if(FIM_B.registerRead()){
+     ACIONAMENTO_B.STOP();
+     carroB_ENCODER.pulsos = 0;
+     carroB_ENCODER.pose = 0;
+     PIDB.addInput(0);
+  }
+  while(!(FIM_C.registerRead())){
+    PIDC.setSetPoint(untilZero_C);
+    UP_PIDC();
+    untilZero_C--;
+  }
+  if(FIM_C.registerRead()){
+     ACIONAMENTO_C.STOP();
+     carroC_ENCODER.pulsos = 0;
+     carroC_ENCODER.pose = 0;
+     PIDC.addInput(0);
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   Serial.setTimeout(100);
@@ -295,14 +341,14 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(carroB_ENCODER.getPort1()),  contagem_B, RISING);
   attachInterrupt(digitalPinToInterrupt(carroC_ENCODER.getPort1()),  contagem_C, RISING);  
 
-  /*attachInterrupt(digitalPinToInterrupt(fimcurso_A1),  STOP_A, HIGH);
-  attachInterrupt(digitalPinToInterrupt(FIM_A.getPort2()),  STOP_A, HIGH);
+  attachInterrupt(digitalPinToInterrupt(fimcurso_A1),  STOP_A, RISING);
+  attachInterrupt(digitalPinToInterrupt(fimcurso_A2),  STOP_A, RISING);
 
-  attachInterrupt(digitalPinToInterrupt(FIM_B.getPort1()),  STOP_B, HIGH);
-  attachInterrupt(digitalPinToInterrupt(FIM_B.getPort2()),  STOP_B, HIGH);
+  attachInterrupt(digitalPinToInterrupt(fimcurso_B1),  STOP_B, RISING);
+  attachInterrupt(digitalPinToInterrupt(fimcurso_B2),  STOP_B, RISING);
   
-  attachInterrupt(digitalPinToInterrupt(FIM_C.getPort1()),  STOP_C, HIGH);
-  attachInterrupt(digitalPinToInterrupt(FIM_C.getPort2()),  STOP_C, HIGH);*/
+  attachInterrupt(digitalPinToInterrupt(fimcurso_C1),  STOP_C, RISING);
+  attachInterrupt(digitalPinToInterrupt(fimcurso_C2),  STOP_C, RISING);
 
   carroA_ENCODER.pose = 0;
   carroB_ENCODER.pose = 0;
@@ -325,6 +371,8 @@ void setup() {
   lastComputeTime[2] = millis();
 
   TIME_INICIAL = millis();
+
+  GO_ZERO();
 }
 
 void loop(){  
