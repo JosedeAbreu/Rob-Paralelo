@@ -7,7 +7,7 @@ O sistema físico é constituido pela operação em conjunto de três motores CC
 
 ## *Processo*
 
-- [x] <a href="#Leitura de Encoders">Leitura de Encoders</a>
+- [x] Leitura de Encoders
 - [x] Acionamento dos Carros
 - [x] Implementação do Sistema Supervisório
 - [x] Definição dos Parâmetros PID
@@ -16,7 +16,6 @@ O sistema físico é constituido pela operação em conjunto de três motores CC
 
 ## *Descrição de Etapas*
 ### Leitura de Encoders
-
 Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.
 #### Sequências
 Os padrões sequenciais tem como referência as `Entrada 1` e `Entrada 2`, respectivamente responsáveis pelos `Canal 1` e `Canal 2`.
@@ -67,3 +66,11 @@ ACIONAMENTO(portPWM, portDigital);        //Construtor define as portas como sa�
 OUT(int value);                           //Altera os valores da porta de saída de acordo com "value".
 STOP();                                   //Anula os valores das portas de saída.
 ```
+
+### Sistema Supervisório
+Foi relizada uma adaptação do <a href="https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/PIDTuner">PID Tuner</a>.
+
+#### Adaptações
+##### Layout
+
+##### Padrão de Comunicação
