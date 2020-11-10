@@ -40,10 +40,11 @@ Os padrões sequenciais tem como referência as `Entrada 1` e `Entrada 2`, respe
 Com base em tais padrões sequenciais, foi desevolvida a Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>, com o intuito de automatizar o processo de medição dos sinais referentes aos canais digitais.
 
 ```c++
-ENCODER(Porta 1, Porta 2);      //Método construtor, define as portas como entrada.
+ENCODER(Port1, Port2);        //Método construtor.
 registerRead();               //Realiza a leitura da Porta 2.
 getPort1();                   //Retorna o endereço da Porta 1.
 getPort2();                   //Retorna o endereço da Porta 2.
 ```
+A biblioteca é aplicada em anexo a uma interrupção aplicada ao `Canal 1`, parametrizada para `RISING`, para cada Encoder.
 
 - `Acionamento dos Carros`
