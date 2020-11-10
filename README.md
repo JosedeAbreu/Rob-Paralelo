@@ -3,7 +3,7 @@
 
 <h2><i>Estrutura Física</i></h2>
 <img>
-<p>O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina</p>
+<p align='center'>O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina</p>
 
 <ul>
   <li></li>
