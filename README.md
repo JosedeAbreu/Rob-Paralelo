@@ -7,8 +7,8 @@
 
 <h2><i>Processo</i></h2>
 
--[x] <i>Leitura de Encoders</i>
-<span><b>[x]</b> <i>Acionamento dos Carros</i></span><br>
+- [x] Leitura de Encoders
+- [x] Acionamento dos Carros
 <span><b>[x]</b> <i>Implementação do Sistema Supervisório</i></span><br>
 <span><b>[x]</b> <i>Definição dos Parâmetros PID</i></span><br>
 <span><b>[x]</b> <i>Controle de Posição</i></span><br>
