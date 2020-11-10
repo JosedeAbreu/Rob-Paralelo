@@ -26,7 +26,8 @@
     </span>
     <p>Com base em tais padrões sequenciais, foi desevolvida a Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>, com o intuito de automatizar o processo de medição dos sinais referentes aos canais digitais.</p>
     
-    ENCODER(port_1, port_2) --> Método construtor que define as portas do microcontrolador como entradas
+    - ENCODER(port_1, port_2) //Método construtor, define as portas como entrada.
+    
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
