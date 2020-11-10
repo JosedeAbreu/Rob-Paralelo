@@ -96,23 +96,9 @@ Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Cont
 
 #### Definição dos Parâmetros de Controle
 Com base em testes, percebeu-se melhores resultados com a utilização dos seguintes parâmetros:
-##### Carro A
-`KP`: 40.00
 
-`KI`: 0.00
-
-`KD`: 0.00
-##### Carro B
-`KP`: 40.00
-
-`KI`: 0.00
-
-`KD`: 0.00
-##### Carro C
-`KP`: 36.00
-
-`KI`: 0.00
-
-`KD`: 0.01
-
-
+| Ganhos | Carro A | Carro B | Carro C |
+|-------|-----------|-----------|-----------|
+| KP | 40 | 40 | 32|
+| KI | 0 | 0 |  |
+| KD | 0 | 0 | 0.016 |
