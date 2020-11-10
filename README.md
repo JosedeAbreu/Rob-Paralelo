@@ -21,7 +21,6 @@
     <h3><u>Sequências</u></h3>
     <span>
       <h4>Positiva</h4>
-      
       <h4>Negativa</h4>
     </span>
   </li>
