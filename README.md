@@ -9,10 +9,10 @@
 
 - [x] Leitura de Encoders
 - [x] Acionamento dos Carros
-<span><b>[x]</b> <i>Implementação do Sistema Supervisório</i></span><br>
-<span><b>[x]</b> <i>Definição dos Parâmetros PID</i></span><br>
-<span><b>[x]</b> <i>Controle de Posição</i></span><br>
-<span><b>[   ]</b> <i>Implementação de modelo matemático</i></span><br>
+- [x] Implementação do Sistema Supervisório
+- [x] Definição dos Parâmetros PID
+- [x] Controle de Posição
+- [] Implementação de modelo matemático
 
 <h2><i>Descrição de Etapas</i></h2>
 <ul>
