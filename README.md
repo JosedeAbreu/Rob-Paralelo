@@ -23,7 +23,7 @@
       <h5>Positiva</h5> 
       <h5>Negativa</h5>
     </span>
-    <p>Assim, foi-se desevolvida a Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>.</p>
+    <p>Assim, foram-se desevolvidos os métodos utilizados na Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>, com o intuito de automatizar o processo de medição dos sinais referentes aos canais digitais.</p>
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
