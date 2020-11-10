@@ -19,10 +19,21 @@ O sistema físico é constituido pela operação em conjunto de três motores CC
 
 Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.
 #### Sequências
-###### Positiva 
+###### Ciclo positivo 
+| Tempo | Entrada 1 | Entrada 2 |
+|-------|-----------|-----------|
+|*T1*|0|0|
+|*T2*|1|0|
+|*T3*|1|1|
+|*T4*|0|1|
 
-###### Negativa
-
+###### Ciclo negativo
+| Tempo | Entrada 1 | Entrada 2 |
+|-------|-----------|-----------|
+|*T1*|0|0|
+|*T2*|0|1|
+|*T3*|1|1|
+|*T4*|1|0|
 
 Com base em tais padrões sequenciais, foi desevolvida a Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>, com o intuito de automatizar o processo de medição dos sinais referentes aos canais digitais.
 
