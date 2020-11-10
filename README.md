@@ -6,18 +6,18 @@
 <p>O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina</p>
 
 <h2><i>Processo</i></h2>
-<span>[x] <i>Leitura de Encoders</i></span><br>
-<span>[x] <i>Acionamento dos Carros</i></span><br>
-<span>[x] <i>Implementação do Sistema Supervisório</i></span><br>
-<span>[x] <i>Definição dos Parâmetros PID</i></span><br>
-<span>[x] <i>Controle de Posição</i></span><br>
-<span>[ ] <i>Implementação de modelo matemático</i></span><br>
+<span><b>[x]</b> <i>Leitura de Encoders</i></span><br>
+<span><b>[x]</b> <i>Acionamento dos Carros</i></span><br>
+<span><b>[x]</b> <i>Implementação do Sistema Supervisório</i></span><br>
+<span><b>[x]</b> <i>Definição dos Parâmetros PID</i></span><br>
+<span><b>[x]</b> <i>Controle de Posição</i></span><br>
+<span><b>[ ]</b> <i>Implementação de modelo matemático</i></span><br>
 
 <h2><i>Descrição de Etapas</i></h2>
 <ul>
   <li>
     <a href='./BIBLIOTECAS/ENCODER'>Leitura de Encoders</a>
-    <p>Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo</p>
+    <p>Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.</p>
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
