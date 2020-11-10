@@ -3,7 +3,7 @@
 
 ## *Estrutura Física*
 
-<p align='center'> <img src="./imagens/20200227_170109.jpg" alt='foto robô'/> </p>
+<p align='center'> <img src="./imagens/robo-imagem.png" alt='foto robô'/> </p>
 
 O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina.
 
