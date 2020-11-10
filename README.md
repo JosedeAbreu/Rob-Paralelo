@@ -13,7 +13,11 @@
 <span>[x] Controle de Posição</span><br>
 <span>[ ] Implementação de modelo matemático</span><br>
 
+<h2><i>Descrição de Etapas</i></h2>
 <ul>
+  <li>
+    <a href='./bibliotecas'>Leitura de Encoders</a>
+  </li>
   <li>
     <a href='./Controlador'>controlador</a>
     <p></p>
