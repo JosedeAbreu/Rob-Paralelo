@@ -7,7 +7,7 @@ O sistema físico é constituido pela operação em conjunto de três motores CC
 
 ## *Processo*
 
-- [x] <a href="### Leitura de Encoders">Leitura de Encoders
+- [x] <a href="### Leitura de Encoders">Leitura de Encoders</a>
 - [x] Acionamento dos Carros
 - [x] Implementação do Sistema Supervisório
 - [x] Definição dos Parâmetros PID
