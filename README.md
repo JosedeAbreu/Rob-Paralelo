@@ -6,12 +6,12 @@
 <p>O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina</p>
 
 <h2><i>Processo</i></h2>
-<span>[x] Leitura de Encoders</span><br>
-<span>[x] Acionamento dos Carros</span><br>
-<span>[x] Implementação do Sistema Supervisório</span><br>
-<span>[x] Definição dos Parâmetros PID</span><br>
-<span>[x] Controle de Posição</span><br>
-<span>[ ] Implementação de modelo matemático</span><br>
+<span>[x] <i>Leitura de Encoders</i></span><br>
+<span>[x] <i>Acionamento dos Carros</i></span><br>
+<span>[x] <i>Implementação do Sistema Supervisório</i></span><br>
+<span>[x] <i>Definição dos Parâmetros PID</i></span><br>
+<span>[x] <i>Controle de Posição</i></span><br>
+<span>[ ] <i>Implementação de modelo matemático</i></span><br>
 
 <h2><i>Descrição de Etapas</i></h2>
 <ul>
