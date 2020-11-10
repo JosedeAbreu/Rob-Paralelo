@@ -12,7 +12,7 @@
 - [x] Implementação do Sistema Supervisório
 - [x] Definição dos Parâmetros PID
 - [x] Controle de Posição
-- [] Implementação de modelo matemático
+- [ ] Implementação de modelo matemático
 
 <h2><i>Descrição de Etapas</i></h2>
 <ul>
