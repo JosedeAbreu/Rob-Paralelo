@@ -3,9 +3,7 @@
 
 ## *Estrutura Física*
 
-<div style="text-align:center">
-  <img src="./imagens/20200227_170122.jpg"/>
-</div>
+<p align='center'> <img src="./imagens/20200227_170122.jpg" alt='foto robô'/> </p>
 
 O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina.
 
@@ -76,6 +74,11 @@ Foi aplicado o programa <a href="https://github.com/AsafeSilva/PID-Tuner-Control
 #### Alterações
 Adaptações foram realizadas para o emprego de três atuadores.
 ##### Layout
+
+
+<p align='center'> <img src="./imagens/ihm.png" alt='Interface Homem-Máquina'/> </p>
+
+
 ##### Padrão de Comunicação
 ###### Microcontrolador -> Computador
 **Entrada**: `'I' + carro + valor + '\n'`
@@ -100,7 +103,7 @@ Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Cont
 
 #### Definição dos Parâmetros de Controle
 Com base em testes, percebeu-se melhores resultados com a utilização dos seguintes parâmetros:
-
+  
 | Ganhos | Carro A | Carro B | Carro C |
 |-------|-----------|-----------|-----------|
 | KP | 40.00 | 40.00 | 32.00 |
