@@ -5,8 +5,7 @@
 
 <p align='center'> <img src="./imagens/robo-imagem.png" alt='foto robô'/> </p>
 
-O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina.
-
+O Sistema Opercional atua de acordo com a apuração dos dados por parte de um Microcontrolador (Arduino Due), que gerencia o conjunto de Carros posicionados de acordo com a arquitetura Linear-Paralela.
 ## *Processo*
 
 - [x] Leitura de Encoders
