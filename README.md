@@ -16,7 +16,7 @@
 <h2><i>Descrição de Etapas</i></h2>
 <ul>
   <li>
-    <h3>Leitura de Encoders<h3>
+    <h3>Leitura de Encoders</h3>
     <p>Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.</p>
     <h4>Sequências</h4>
     <span>
