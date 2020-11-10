@@ -89,6 +89,8 @@ Adaptações foram realizadas para o emprego de três atuadores.
 
 
 ### Controle de Posição
+
+Por meio da junção da <a href='./Leitura_de_Encoders/Leitura_de_Encoders.ino'>Leitura dos Encoders</a>, <a href='./Acionamento_carro/Acionamento_carro.ino'>Acionamento de Carros</a> e Sistema Supervisório, realiza-se o <a href='./Controlador/Controlador.ino'>Controlador</a>.
 #### PID
 Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/Controller/C%2B%2B'>PID Controler</a> para a computação PID.
 
@@ -112,4 +114,5 @@ Com base em testes, percebeu-se melhores resultados com a utilização dos segui
 `KI`: 0.00
 
 `KD`: 0.01
-Por meio da junção das etapas anteriores, faz-se possível realizar o controle 
+
+
