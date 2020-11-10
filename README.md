@@ -16,7 +16,7 @@ O Sistema Opercional atua de acordo com a apuração dos dados por parte de um M
 
 ## *Descrição de Etapas*
 ### Leitura de Encoders
-Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.
+Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica, capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.
 #### Sequências
 Os padrões sequenciais tem como referência as `Entrada 1` e `Entrada 2`, respectivamente responsáveis pelos `Canal 1` e `Canal 2`.
 
@@ -63,7 +63,7 @@ A Biblioteca <a href="./BIBLIOTECAS/ACIONAMENTO">ACIONAMENTO</a> foi desenvolvid
   
 ```c++
 ACIONAMENTO(portPWM, portDigital);        //Construtor define as portas como saída
-OUT(int value);                           //Altera os valores da porta de saída de acordo com "value".
+OUT(int value);                           //Altera os valores das portas de saída de acordo com "value".
 STOP();                                   //Anula os valores das portas de saída.
 ```
 
