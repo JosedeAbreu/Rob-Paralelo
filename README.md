@@ -5,7 +5,7 @@
 
 <p align='center'> <img src="./imagens/robo-imagem.png" alt='foto robô'/> </p>
 
-O Sistema Opercional atua de acordo com a apuração dos dados por parte de um Microcontrolador (Arduino Due), que gerencia o conjunto de Carros posicionados de acordo com a arquitetura Linear-Paralela.
+O Sistema Opercional atua de acordo com a apuração dos dados por parte de um Microcontrolador (Arduino Due), que gerencia o posicionamento do conjunto de Carros estruturados de acordo com a arquitetura Linear-Paralela.
 ## *Processo*
 
 - [x] Leitura de Encoders
