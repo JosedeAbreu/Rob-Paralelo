@@ -6,7 +6,8 @@
 <p>O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina</p>
 
 <h2><i>Processo</i></h2>
-<span><b>[x]</b> <i>Leitura de Encoders</i></span><br>
+
+-[x] <i>Leitura de Encoders</i>
 <span><b>[x]</b> <i>Acionamento dos Carros</i></span><br>
 <span><b>[x]</b> <i>Implementação do Sistema Supervisório</i></span><br>
 <span><b>[x]</b> <i>Definição dos Parâmetros PID</i></span><br>
@@ -24,6 +25,8 @@
       <h5>Negativa</h5>
     </span>
     <p>Com base em tais padrões sequenciais, foi desevolvida a Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>, com o intuito de automatizar o processo de medição dos sinais referentes aos canais digitais.</p>
+    
+    ´´
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
