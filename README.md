@@ -70,7 +70,10 @@ STOP();                                   //Anula os valores das portas de saíd
 ### Sistema Supervisório
 Foi relizada uma adaptação do <a href="https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/PIDTuner">PID Tuner</a>.
 
-#### Adaptações
+#### Alterações
+Adaptações foram realizadas quanto ao emprego de três atuadores.
 ##### Layout
-
 ##### Padrão de Comunicação
+###### Microcontrolador -> Computador
+`Entrada`: 'I'+`carro`+*valor*+'\n'
+`Saída`: 'O'+`carro`+*valor*+'\n'
