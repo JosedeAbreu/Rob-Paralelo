@@ -2,7 +2,7 @@
 <p align='center'>Projeto de um Sistema Surpervisório e Controlador para um Robô Paralelo</p>
 
 ## *Estrutura Física*
-
+<img align=center src='./imagens/20200227_170122.jpg'>
 O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina.
 
 ## *Processo*
