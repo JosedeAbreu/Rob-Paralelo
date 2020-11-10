@@ -26,10 +26,11 @@
     </span>
     <p>Com base em tais padrões sequenciais, foi desevolvida a Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>, com o intuito de automatizar o processo de medição dos sinais referentes aos canais digitais.</p>
     
-    - <b>ENCODER</b>(port_1, port_2)      //Método construtor, define as portas como entrada.
-    - <b>registerRead</b>()               //Realiza a leitura da port_2.
-    - <b>getPort1</b>()                   //Retorna o endereço da port_1.
-    - <b>getPort2</b>()                   //Retorna o endereço da port_2.
+    '''
+    <b>ENCODER</b>(port_1, port_2)      //Método construtor, define as portas como entrada.
+    <b>registerRead</b>()               //Realiza a leitura da port_2.
+    <b>getPort1</b>()                   //Retorna o endereço da port_1.
+    <b>getPort2</b>()                   //Retorna o endereço da port_2.
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
