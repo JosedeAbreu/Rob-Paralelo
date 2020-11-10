@@ -5,10 +5,15 @@
 <img>
 <p>O sistema físico é constituido pela operação em conjunto de três motores CC a fim de controlar o anexo estrutural posicionado no interior da máquina</p>
 
+<h2>Processo</h2>
+- [x] Cadastro de usuário
+- [x] Cadastro de cliente
+- [ ] Cadastro de produtos
+
 <ul>
   <li>
     <a href='./Controlador'>controlador</a>
-    <p>jasndjfndfnjdjf</p>
+    <p></p>
   </li>
 <ul>
 
