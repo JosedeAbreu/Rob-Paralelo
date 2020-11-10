@@ -23,7 +23,7 @@
       <h4>Positiva</h4>
       <h4>Negativa</h4>
     </span>
-    <p>Assim, foi-se desevolvida a biblioteca <mark>ENCODER</mark></p>
+    <p>Assim, foi-se desevolvida a Biblioteca 'ENCODER'</p>
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
