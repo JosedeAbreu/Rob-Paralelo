@@ -41,7 +41,7 @@ Com base em tais padrões sequenciais, foi desevolvida a Biblioteca <a href='./B
 
 ```c++
 ENCODER(Port1, Port2);        //Método construtor.
-registerRead();               //Realiza a leitura da Porta 2.
+registerRead();               //Retorna a leitura por registrador da Porta 2.
 getPort1();                   //Retorna o endereço da Porta 1.
 getPort2();                   //Retorna o endereço da Porta 2.
 ```
