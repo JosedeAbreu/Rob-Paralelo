@@ -19,7 +19,9 @@
     <a href='./BIBLIOTECAS/ENCODER'>Leitura de Encoders</a>
     <p>Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.</p>
     <h3>Sequências</h3>
-    ####Positiva
+    <span>
+      <h4>Positiva</h4>
+    </span>
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
