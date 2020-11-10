@@ -45,6 +45,6 @@ registerRead();               //Retorna a leitura por registrador da Porta 2.
 getPort1();                   //Retorna o endereço da Porta 1.
 getPort2();                   //Retorna o endereço da Porta 2.
 ```
-A biblioteca é aplicada em anexo a uma interrupção aplicada ao `Canal 1`, parametrizada para `RISING`, para cada Encoder.
+A biblioteca atua inserida em anexo a uma interrupção, parametrizada para `RISING`, aplicada ao `Canal 1` em cada Encoder.
 
 - `Acionamento dos Carros`
