@@ -99,6 +99,6 @@ Com base em testes, percebeu-se melhores resultados com a utilização dos segui
 
 | Ganhos | Carro A | Carro B | Carro C |
 |-------|-----------|-----------|-----------|
-| KP | 40 | 40 | 32|
-| KI | 0 | 0 |  |
-| KD | 0 | 0 | 0.016 |
+| KP | 40.00 | 40.00 | 32.00 |
+| KI | 0.00 | 0.00 | 0.00 |
+| KD | 0.00 | 0.00 | 0.016 |
