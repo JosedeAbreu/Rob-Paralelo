@@ -19,6 +19,8 @@ O sistema físico é constituido pela operação em conjunto de três motores CC
 
 Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.
 #### Sequências
+Os padrões sequenciais tem como referência as `Entrada 1` e `Entrada 2`, respectivamente responsáveis pelos `Canal 1` e `Canal 2`.
+
 ###### Ciclo positivo 
 | Tempo | Entrada 1 | Entrada 2 |
 |-------|-----------|-----------|
@@ -38,10 +40,10 @@ Com a leitura dos canais provenientes do hardware, realiza-se a formulação ló
 Com base em tais padrões sequenciais, foi desevolvida a Biblioteca <a href='./BIBLIOTECAS/ENCODER'>ENCODER</a>, com o intuito de automatizar o processo de medição dos sinais referentes aos canais digitais.
 
 ```c++
-ENCODER(port_1, port_2);      //Método construtor, define as portas como entrada.
-registerRead();               //Realiza a leitura da port_2.
-getPort1();                   //Retorna o endereço da port_1.
-getPort2();                   //Retorna o endereço da port_2.
+ENCODER(Porta 1, Porta 2);      //Método construtor, define as portas como entrada.
+registerRead();               //Realiza a leitura da Porta 2.
+getPort1();                   //Retorna o endereço da Porta 1.
+getPort2();                   //Retorna o endereço da Porta 2.
 ```
 
 - `Acionamento dos Carros`
