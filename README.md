@@ -89,4 +89,4 @@ Adaptações foram realizadas quanto ao emprego de três atuadores.
 **Set Point**:`'S'+carro+*valor*+'\n'`
 
 ### PID
-Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/Controller/C%2B%2B'>PID Controler</a> para a computação sistemática.
+Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/Controller/C%2B%2B'>PID Controler</a> para a computação PID.
