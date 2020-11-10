@@ -10,7 +10,6 @@ O sistema físico é constituido pela operação em conjunto de três motores CC
 - [x] Leitura de Encoders
 - [x] Acionamento dos Carros
 - [x] Implementação do Sistema Supervisório
-- [x] PID
 - [x] Controle de Posição
 - [ ] Implementação de modelo matemático
 
@@ -93,4 +92,24 @@ Adaptações foram realizadas para o emprego de três atuadores.
 #### PID
 Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/Controller/C%2B%2B'>PID Controler</a> para a computação PID.
 
-Por meio da junção das etapas anteriores, faz-se possível realizar o controle
+#### Definição dos Parâmetros de Controle
+Com base em testes, percebeu-se melhores resultados com a utilização dos seguintes parâmetros:
+##### Carro A
+`KP`: 40.00
+
+`KI`: 0.00
+
+`KD`: 0.00
+##### Carro B
+`KP`: 40.00
+
+`KI`: 0.00
+
+`KD`: 0.00
+##### Carro C
+`KP`: 36.00
+
+`KI`: 0.00
+
+`KD`: 0.01
+Por meio da junção das etapas anteriores, faz-se possível realizar o controle 
