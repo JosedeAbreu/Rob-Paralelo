@@ -75,9 +75,9 @@ Adaptações foram realizadas quanto ao emprego de três atuadores.
 ##### Layout
 ##### Padrão de Comunicação
 ###### Microcontrolador -> Computador
-**`Entrada`**:'I'+`carro`+*valor*+'\n'
+**Entrada**:`'I'+carro+*valor*+'\n'`
 
-**`Saída`**:'O'+`carro`+*valor*+'\n'
+**Saída**:`'O'+carro+*valor*+'\n'`
 
 ###### Computador -> Microcontrolador
 **KP**:`'P'+carro+*valor*+'\n'`
