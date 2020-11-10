@@ -80,10 +80,10 @@ Adaptações foram realizadas quanto ao emprego de três atuadores.
 **`Saída`**:'O'+`carro`+*valor*+'\n'
 
 ###### Computador -> Microcontrolador
-**`KP`**:'P'+`carro`+*valor*+'\n'
+**KP**:`'P'+carro+*valor*+'\n'`
 
-**`KI`**:'I'+`carro`+*valor*+'\n'
+**KI**:`'I'+carro+*valor*+'\n'`
 
-**`KD`**:'D'+`carro`+*valor*+'\n'
+**KD**:`'D'+carro+*valor*+'\n'`
 
-**`Set Point`**:'S'+`carro`+*valor*+'\n'
+**Set Point**:`'S'+carro+*valor*+'\n'`
