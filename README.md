@@ -16,7 +16,7 @@
 <h2><i>Descrição de Etapas</i></h2>
 <ul>
   <li>
-    <a href='./bibliotecas'>Leitura de Encoders</a>
+    <a href='./BIBLIOTECAS/ENCODER'>Leitura de Encoders</a>
   </li>
   <li>
     <a href='./Controlador'>controlador</a>
