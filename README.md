@@ -15,7 +15,7 @@ O Sistema Opercional atua de acordo com a apuração dos dados por parte de um M
 - [ ] Implementação de modelo matemático
 
 ## *Descrição de Etapas*
-### Leitura de Encoders
+- ### Leitura de Encoders
 Com a leitura dos canais provenientes do hardware, realiza-se a formulação lógica, capaz de identificar o deslocamento dos atuadores em relação ao seu eixo.
 #### Sequências
 Os padrões sequenciais tem como referência as `Entrada 1` e `Entrada 2`, respectivamente responsáveis pelos `Canal 1` e `Canal 2`.
@@ -47,7 +47,7 @@ getPort2();                   //Retorna o endereço da Porta 2.
 ```
 A biblioteca atua inserida em anexo a uma interrupção, parametrizada para `RISING`, aplicada ao `Canal 1` em cada Encoder.
 
-### Acionamento dos Carros
+- ### Acionamento dos Carros
 
 A movimentação dos carros é realizada por meio da manipulação de portas `PWM` e `Digital`, que indicam potência e sentido de rotação, respectivamente.
 #### Padrão de Movimentação
@@ -67,7 +67,7 @@ OUT(int value);                           //Altera os valores das portas de saí
 STOP();                                   //Anula os valores das portas de saída.
 ```
 
-### Sistema Supervisório
+- ### Sistema Supervisório
 Foi aplicado o programa <a href="https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/PIDTuner">PID Tuner</a> com adaptações.
 
 #### Alterações
@@ -94,7 +94,7 @@ Adaptações foram realizadas para o emprego de três atuadores.
 **Set Point**: `'S' + carro + valor + '\n'`
 
 
-### Controle de Posição
+- ### Controle de Posição
 
 Por meio da integração da <a href='./Leitura_de_encoders/Leitura_de_encoders.ino'>Leitura dos Encoders</a>, <a href='./Acionamento_carro/Acionamento_carro.ino'>Acionamento de Carros</a> e Sistema Supervisório, realiza-se o <a href='./Controlador/Controlador.ino'>Controlador de Posição</a>.
 #### PID
