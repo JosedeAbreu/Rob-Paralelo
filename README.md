@@ -1,5 +1,5 @@
-<h1 align='center'>Robô Paralelo</h1>
-<p align='center'>Projeto de um Sistema Surpervisório e Controlador para um Robô Paralelo</p>
+<h1 align='center'>Sistema Embarcado para o Controle de um Robô Paralelo</h1>
+<p align='center'>Projeto direcionado para a implementação de um Controlador PID voltado para o controle de posição de um Robô com arquitetura Paralela, utilizando-se de um Sistema Embarcado.</p>
 
 ## *Estrutura Física*
 
