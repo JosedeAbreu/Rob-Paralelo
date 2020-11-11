@@ -98,7 +98,7 @@ Adaptações foram realizadas para o emprego de três atuadores.
 
 Por meio da integração da <a href='./Leitura_de_encoders/Leitura_de_encoders.ino'>Leitura dos Encoders</a>, <a href='./Acionamento_carro/Acionamento_carro.ino'>Acionamento de Carros</a> e Sistema Supervisório, realiza-se o <a href='./Controlador/Controlador.ino'>Controlador de Posição</a>.
 #### PID
-Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/Controller/C%2B%2B'>PID Controler</a> para a computação PID.
+Foi utilizada a biblioteca <a href='https://github.com/AsafeSilva/PID-Tuner-Controller'>PID Controler</a> para a computação PID.
 
 #### Definição dos Parâmetros de Controle
 Com base em testes, percebeu-se melhores resultados com a utilização dos seguintes parâmetros:
