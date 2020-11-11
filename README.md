@@ -68,17 +68,15 @@ STOP();                                   //Anula os valores das portas de saíd
 ```
 
 - ### Sistema Supervisório
-Foi aplicado o programa <a href="https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/PIDTuner">PID Tuner</a> com adaptações.
+O Software <a href="https://github.com/AsafeSilva/PID-Tuner-Controller/tree/master/PIDTuner">PID Tuner</a> foi adaptado para a utilização no sistema em curso.
 
 #### Alterações
 Adaptações foram realizadas para o emprego de três atuadores.
 ##### Layout
 
-
 <p align='center'> <img src="./imagens/ihm.png" alt='Interface Homem-Máquina'/> </p>
 
-
-##### Padrão de Comunicação
+##### Protocolo de Comunicação
 ###### Microcontrolador -> Computador
 **Entrada**: `'I' + carro + valor + '\n'`
 
