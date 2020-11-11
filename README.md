@@ -5,7 +5,8 @@
 
 <p align='center'> <img src="./imagens/robo-imagem.png" alt='foto robô'/> </p>
 
-O Sistema Opercional atua de acordo com a apuração dos dados por parte de um Microcontrolador (Arduino Due), que gerencia o posicionamento do conjunto de Carros estruturados de acordo com a arquitetura Linear-Paralela.
+A estrutura física se constitui na conjunção de 3 bases, que em anexo possuem: um motor, um encoder com resolução de 400 pulsos/volta, um eixo e uma castanha. O sistema de controle tem seu funcionamento voltado ao posicionamento exato da castanha em relação ao fuso. A técnica de controle PID é empregada como alternativa para a operação, que possui como entrada o valor alvo (setpoint) em conjunto com a retroalimentação posicional do elemento manipulado, fornecida pelos encoders.
+
 ## *Processo*
 
 - [x] Leitura de Encoders
