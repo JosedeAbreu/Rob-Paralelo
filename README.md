@@ -114,9 +114,9 @@ Com base em testes, percebeu-se melhores resultados com a utilização dos segui
 
 |  | Carro A | Carro B | Carro C |
 |-------|--------|--------|------|
-| Encoder - canal 1 | 10 | 17 | 27 |
-| Encoder - canal 2 | 11 | 16 | 29 |
-| Fim de Curso 1 | 12 | 15 | 31 |
-| Fim de Curso 2 | 13 | 14 | 33 |
-| PWM | 9 | 18 | 25 |
-| Sentido | 8 | 19 | 23 |
+| *Encoder - canal 1* | 10 | 17 | 27 |
+| *Encoder - canal 2* | 11 | 16 | 29 |
+| *Fim de Curso 1* | 12 | 15 | 31 |
+| *Fim de Curso 2* | 13 | 14 | 33 |
+| *PWM* | 9 | 18 | 25 |
+| *Sentido* | 8 | 19 | 23 |
